@@ -33,16 +33,19 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('PostsCtrl', function($scope, $http) {
+
+    $http.get('http://elpatin.com/wp-json/posts')
+        .success(function(posts) {
+            $scope.posts = posts;
+        });
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+.controller('PostCtrl', function($scope, $http, $stateParams) {
+
+        $http.get('http://elpatin.com/wp-json/posts/' + $stateParams.postId)
+            .success(function(post) {
+                $scope.post = post;
+            });
+
+    });
