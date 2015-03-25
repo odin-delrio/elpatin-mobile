@@ -8,7 +8,7 @@
               <div class="item item-avatar">
                   <img src="{{post.featured_image.attachment_meta.sizes.thumbnail.url}}">
                   <h2 ng-bind-html="post.title"></h2>
-                  <p>{{post.date}}</p>
+                  <p>{{post.date | date:'yyyy-MM-dd HH:mm'}}</p>
               </div>
 
               <div class="item item-body">
