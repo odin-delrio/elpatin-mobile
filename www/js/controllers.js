@@ -33,15 +33,15 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('PostsCtrl', function ($scope, $http) {
+    .controller('PostsCtrl', ['$scope', '$http', function ($scope, $http) {
 
         $http.get('http://elpatin.com/wp-json/posts')
             .success(function (posts) {
                 $scope.posts = posts;
             });
-    })
+    }])
 
-    .controller('PostCtrl', function ($scope, $sce, $http, $stateParams) {
+    .controller('PostCtrl', ['$scope', '$http', '$sce', '$stateParams', function ($scope, $http, $sce, $stateParams) {
 
         $http.get('http://elpatin.com/wp-json/posts/' + $stateParams.postId)
             .success(function (post) {
@@ -49,4 +49,4 @@ angular.module('starter.controllers', [])
                 $scope.post = post;
             });
 
-    });
+    }]);

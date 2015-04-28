@@ -38,7 +38,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                     }
                 }
             })
-
             .state('app.browse', {
                 url: "/browse",
                 views: {
@@ -56,7 +55,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                     }
                 }
             })
-
             .state('app.single', {
                 url: "/post/:postId",
                 views: {
