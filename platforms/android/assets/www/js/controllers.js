@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('app.controllers', [])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
         // Form data for the login modal
@@ -33,20 +33,27 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('PostsCtrl', function ($scope, $http) {
+    .controller('PostsCtrl', ['$scope', '$http', function ($scope, $http) {
 
         $http.get('http://elpatin.com/wp-json/posts')
             .success(function (posts) {
                 $scope.posts = posts;
             });
-    })
+    }])
 
-    .controller('PostCtrl', function ($scope, $sce, $http, $stateParams) {
+    .controller(
+        'PostCtrl',
+        [
+            '$scope',
+            '$sce',
+            '$stateParams',
+            'PostsRepository',
+            function ($scope, $sce, $stateParams, postsRepository) {
 
-        $http.get('http://elpatin.com/wp-json/posts/' + $stateParams.postId)
-            .success(function (post) {
-                $scope.postContent = $sce.trustAsHtml(post.content);
-                $scope.post = post;
-            });
-
-    });
+                postsRepository.getPost($stateParams.postId).then(function(post) {
+                    $scope.postContent = $sce.trustAsHtml(post.content);
+                    $scope.post = post;
+                });
+            }
+        ]
+    );
