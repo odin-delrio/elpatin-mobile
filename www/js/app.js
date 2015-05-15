@@ -1,20 +1,28 @@
 // Ionic Starter App
 
+// underscore
 var underscore = angular.module('_', []);
 underscore.factory('_', function() {
     return window._;
 });
 
+// underscore.string
 var underscoreString = angular.module('s', []);
-underscore.factory('s', function() {
+underscoreString.factory('s', function() {
     return window.s;
+});
+
+// jquery
+var jQuery = angular.module('$', []);
+jQuery.factory('$', function() {
+    return window.$;
 });
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'app.controllers', 'app.services', '_'])
+angular.module('starter', ['ionic', 'app.controllers', 'app.services'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
